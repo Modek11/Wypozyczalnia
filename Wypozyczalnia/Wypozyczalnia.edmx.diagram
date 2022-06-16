@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5dbe31d92f4a4cd8a557481faed7e105" Name="Diagram1">
+        <EntityTypeShape EntityType="WypozyczalniaModel.KlasyPojazdow" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WypozyczalniaModel.Samochody" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WypozyczalniaModel.Uzytkownicy" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WypozyczalniaModel.Wypozyczone" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="WypozyczalniaModel.FK__Samochody__ID_Kl__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="WypozyczalniaModel.FK__Wypozyczo__ID_Sa__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="WypozyczalniaModel.FK__Wypozyczo__ID_Uz__2B3F6F97" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
