@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
-
+using Wypozyczalnia.MVVM.View;
 
 namespace Wypozyczalnia
 {
@@ -89,7 +89,9 @@ namespace Wypozyczalnia
 
         private void registerBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            RegisterView registerPage = new RegisterView();
+            registerPage.Show();
+            this.Close();
         }
 
         /*private void Register() //TODO
