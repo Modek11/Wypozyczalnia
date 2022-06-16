@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WypozyczalniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KlasyPojazdow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Klasa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LataPrawaJazdy" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Samochody">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_KlasaPojazdu" Type="int" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Generacja" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rocznik" Type="smallint" Nullable="false" />
+          <Property Name="MocKM" Type="smallint" Nullable="false" />
+          <Property Name="CenaDoba" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CenaDlugoTerm" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PESEL" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NrTelefonu" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Haslo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LataPrawaJazdy" Type="smallint" />
+          <Property Name="CzyPracownik" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wypozyczone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Samochod" Type="int" Nullable="false" />
+          <Property Name="ID_Uzytkownik" Type="int" Nullable="false" />
+          <Property Name="DataOdbioru" Type="date" Nullable="false" />
+          <Property Name="DataZwrotu" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Samochody__ID_Kl__2A4B4B5E">
+          <End Role="KlasyPojazdow" Type="Self.KlasyPojazdow" Multiplicity="1" />
+          <End Role="Samochody" Type="Self.Samochody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KlasyPojazdow">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Samochody">
+              <PropertyRef Name="ID_KlasaPojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wypozyczo__ID_Sa__2C3393D0">
+          <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+          <End Role="Wypozyczone" Type="Self.Wypozyczone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Samochody">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Wypozyczone">
+              <PropertyRef Name="ID_Samochod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wypozyczo__ID_Uz__2B3F6F97">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="Wypozyczone" Type="Self.Wypozyczone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Wypozyczone">
+              <PropertyRef Name="ID_Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaModelStoreContainer">
+          <EntitySet Name="KlasyPojazdow" EntityType="Self.KlasyPojazdow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Samochody" EntityType="Self.Samochody" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wypozyczone" EntityType="Self.Wypozyczone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Samochody__ID_Kl__2A4B4B5E" Association="Self.FK__Samochody__ID_Kl__2A4B4B5E">
+            <End Role="KlasyPojazdow" EntitySet="KlasyPojazdow" />
+            <End Role="Samochody" EntitySet="Samochody" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wypozyczo__ID_Sa__2C3393D0" Association="Self.FK__Wypozyczo__ID_Sa__2C3393D0">
+            <End Role="Samochody" EntitySet="Samochody" />
+            <End Role="Wypozyczone" EntitySet="Wypozyczone" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wypozyczo__ID_Uz__2B3F6F97" Association="Self.FK__Wypozyczo__ID_Uz__2B3F6F97">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Wypozyczone" EntitySet="Wypozyczone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WypozyczalniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KlasyPojazdow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Klasa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LataPrawaJazdy" Type="Int16" />
+          <NavigationProperty Name="Samochody" Relationship="Self.FK__Samochody__ID_Kl__2A4B4B5E" FromRole="KlasyPojazdow" ToRole="Samochody" />
+        </EntityType>
+        <EntityType Name="Samochody">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_KlasaPojazdu" Type="Int32" Nullable="false" />
+          <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Generacja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rocznik" Type="Int16" Nullable="false" />
+          <Property Name="MocKM" Type="Int16" Nullable="false" />
+          <Property Name="CenaDoba" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CenaDlugoTerm" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="KlasyPojazdow" Relationship="Self.FK__Samochody__ID_Kl__2A4B4B5E" FromRole="Samochody" ToRole="KlasyPojazdow" />
+          <NavigationProperty Name="Wypozyczone" Relationship="Self.FK__Wypozyczo__ID_Sa__2C3393D0" FromRole="Samochody" ToRole="Wypozyczone" />
+        </EntityType>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PESEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NrTelefonu" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Haslo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LataPrawaJazdy" Type="Int16" />
+          <Property Name="CzyPracownik" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Wypozyczone" Relationship="Self.FK__Wypozyczo__ID_Uz__2B3F6F97" FromRole="Uzytkownicy" ToRole="Wypozyczone" />
+        </EntityType>
+        <EntityType Name="Wypozyczone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Samochod" Type="Int32" Nullable="false" />
+          <Property Name="ID_Uzytkownik" Type="Int32" Nullable="false" />
+          <Property Name="DataOdbioru" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataZwrotu" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Samochody" Relationship="Self.FK__Wypozyczo__ID_Sa__2C3393D0" FromRole="Wypozyczone" ToRole="Samochody" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="Self.FK__Wypozyczo__ID_Uz__2B3F6F97" FromRole="Wypozyczone" ToRole="Uzytkownicy" />
+        </EntityType>
+        <Association Name="FK__Samochody__ID_Kl__2A4B4B5E">
+          <End Role="KlasyPojazdow" Type="Self.KlasyPojazdow" Multiplicity="1" />
+          <End Role="Samochody" Type="Self.Samochody" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KlasyPojazdow">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Samochody">
+              <PropertyRef Name="ID_KlasaPojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wypozyczo__ID_Sa__2C3393D0">
+          <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+          <End Role="Wypozyczone" Type="Self.Wypozyczone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Samochody">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Wypozyczone">
+              <PropertyRef Name="ID_Samochod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wypozyczo__ID_Uz__2B3F6F97">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="Wypozyczone" Type="Self.Wypozyczone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Wypozyczone">
+              <PropertyRef Name="ID_Uzytkownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KlasyPojazdow" EntityType="Self.KlasyPojazdow" />
+          <EntitySet Name="Samochody" EntityType="Self.Samochody" />
+          <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" />
+          <EntitySet Name="Wypozyczone" EntityType="Self.Wypozyczone" />
+          <AssociationSet Name="FK__Samochody__ID_Kl__2A4B4B5E" Association="Self.FK__Samochody__ID_Kl__2A4B4B5E">
+            <End Role="KlasyPojazdow" EntitySet="KlasyPojazdow" />
+            <End Role="Samochody" EntitySet="Samochody" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wypozyczo__ID_Sa__2C3393D0" Association="Self.FK__Wypozyczo__ID_Sa__2C3393D0">
+            <End Role="Samochody" EntitySet="Samochody" />
+            <End Role="Wypozyczone" EntitySet="Wypozyczone" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wypozyczo__ID_Uz__2B3F6F97" Association="Self.FK__Wypozyczo__ID_Uz__2B3F6F97">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Wypozyczone" EntitySet="Wypozyczone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WypozyczalniaModelStoreContainer" CdmEntityContainer="WypozyczalniaEntities">
+          <EntitySetMapping Name="KlasyPojazdow">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.KlasyPojazdow">
+              <MappingFragment StoreEntitySet="KlasyPojazdow">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Klasa" ColumnName="Klasa" />
+                <ScalarProperty Name="LataPrawaJazdy" ColumnName="LataPrawaJazdy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Samochody">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Samochody">
+              <MappingFragment StoreEntitySet="Samochody">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_KlasaPojazdu" ColumnName="ID_KlasaPojazdu" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Generacja" ColumnName="Generacja" />
+                <ScalarProperty Name="Rocznik" ColumnName="Rocznik" />
+                <ScalarProperty Name="MocKM" ColumnName="MocKM" />
+                <ScalarProperty Name="CenaDoba" ColumnName="CenaDoba" />
+                <ScalarProperty Name="CenaDlugoTerm" ColumnName="CenaDlugoTerm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkownicy">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Uzytkownicy">
+              <MappingFragment StoreEntitySet="Uzytkownicy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+                <ScalarProperty Name="NrTelefonu" ColumnName="NrTelefonu" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+                <ScalarProperty Name="LataPrawaJazdy" ColumnName="LataPrawaJazdy" />
+                <ScalarProperty Name="CzyPracownik" ColumnName="CzyPracownik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wypozyczone">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.Wypozyczone">
+              <MappingFragment StoreEntitySet="Wypozyczone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Samochod" ColumnName="ID_Samochod" />
+                <ScalarProperty Name="ID_Uzytkownik" ColumnName="ID_Uzytkownik" />
+                <ScalarProperty Name="DataOdbioru" ColumnName="DataOdbioru" />
+                <ScalarProperty Name="DataZwrotu" ColumnName="DataZwrotu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
