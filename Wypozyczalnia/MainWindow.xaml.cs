@@ -28,7 +28,7 @@ namespace Wypozyczalnia
             InitializeComponent();
         }
         public bool isDarkTheme { get; set; }
-        private readonly PaletteHelper paletteHelper=new PaletteHelper();
+        private readonly PaletteHelper paletteHelper = new PaletteHelper();
         private void toggleTheme(object sender, RoutedEventArgs e)
         {
             ITheme theme = paletteHelper.GetTheme();
@@ -93,55 +93,6 @@ namespace Wypozyczalnia
             registerPage.Show();
             this.Close();
         }
-
-        /*private void Register() //TODO
-        {
-            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
-            {
-                string insertedName = ;
-                string insertedSurname = ;
-                string insertedEmail = ;
-                string insertedPassword = ;
-                string insertedPESEL = ;
-                bool parsedPhoneNumber = Int32.TryParse(Console.ReadLine().Trim(), out int insertedPhoneNumber);
-                bool parsedDrivingLicenseYears = short.TryParse(Console.ReadLine().Trim(), out short insertedDrivingLicenseYears);
-
-                if (!parsedPhoneNumber || !parsedDrivingLicenseYears)
-                {
-                    Console.WriteLine("Podano złe liczby w formularzu!");
-                    return;
-                }
-
-                if (insertedPhoneNumber < 100000000 || insertedPhoneNumber > 999999999)
-                {
-                    Console.WriteLine("Podany numer telefonu jest błędny!");
-                    return;
-                }
-
-                foreach (var user in db.Uzytkownicy)
-                {
-                    if (insertedEmail == user.Email)
-                    {
-                        Console.WriteLine("Podany E-mail już istnieje!");
-                        return;
-                    }
-                    if (insertedPESEL == user.PESEL)
-                    {
-                        Console.WriteLine("Podany PESEL już istnieje!");
-                        return;
-                    }
-                    if (insertedPhoneNumber == user.NrTelefonu)
-                    {
-                        Console.WriteLine("Podany numer telefonu już istnieje!");
-                        return;
-                    }
-                }
-
-                db.Uzytkownicy.Add(new Uzytkownicy { Imie = insertedName, Nazwisko = insertedSurname, PESEL = insertedPESEL, NrTelefonu = insertedPhoneNumber, Email = insertedEmail, Haslo = insertedPassword, LataPrawaJazdy = insertedDrivingLicenseYears });
-                db.SaveChanges();
-                Console.WriteLine("Użytkownik został stworzony");
-            }
-        }*/
 
         private void forgotBtn_Click(object sender, RoutedEventArgs e)
         {
