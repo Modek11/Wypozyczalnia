@@ -1,0 +1,4 @@
+Resetowanie hasła poprzez wysyłanie maila
+Tworzenie nowego konta
+Zmiana atrybutów przez konto admina ???
+Zmiana hasła z poziomu aplikacji

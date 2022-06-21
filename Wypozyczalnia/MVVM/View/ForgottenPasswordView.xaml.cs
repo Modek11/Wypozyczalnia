@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Mail;
+using System.Net;
+using System.Net.Security;
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -24,29 +26,60 @@ namespace Wypozyczalnia.MVVM.View
         {
             InitializeComponent();
         }
+        private void exitApp(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
-        //fagib96160@tagbert.com
+        private void forgottenPasswordSubmitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string insertedEmail = "technikinformatykprogramista@gmail.com"; //forgottenPasswordInsertEmail.Text;
+
+            //TODO Logika sprawdzania poprawności danych
+
+            SendEmail(insertedEmail);
+        }
 
         private void fpBackToLoginBtn_Click(object sender, EventArgs e)
         {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        public void SendEmail(string insertedEmail)
+        {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("grupastudentuw@gmail.com");
-                mail.To.Add("technikinformatykprogramista@gmail.com");
-                mail.Subject = "Test Sending Mail";
-                mail.Body = "<h1>DUPCIA</h1>";
+                mail.From = new MailAddress("grupawariatuw@interia.pl", "Wypożyczalnia Samochodowa");
+                mail.To.Add(insertedEmail);
+                mail.Subject = "Kod do zresetowania hasła do konta";
+                mail.Body = GenerateResetPasswordCode(10);
                 mail.IsBodyHtml = true;
 
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com",587))
+                using (SmtpClient smtp = new SmtpClient("poczta.interia.pl", 587))
                 {
-                    smtp.Credentials = new System.Net.NetworkCredential("grupastudentuw@gmail.com","Klisiewicz1");
+                    smtp.Credentials = new NetworkCredential("grupawariatuw@interia.pl", "tomczyk1");
                     smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtp.Send(mail);
                     forgottenPasswordInfoText.Text = "E-mail wysłano!";
                 }
-
             }
         }
 
+        public string GenerateResetPasswordCode(int length)
+        {
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
+        }
+
+        
     }
 }

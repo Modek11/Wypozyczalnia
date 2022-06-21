@@ -79,7 +79,9 @@ namespace Wypozyczalnia
 
         private void forgotBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ForgottenPasswordView forgottenPasswordView = new ForgottenPasswordView();
+            forgottenPasswordView.Show();
+            this.Close();
         }
     }
 }

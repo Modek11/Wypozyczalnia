@@ -12,7 +12,8 @@
                               >
 
                             <TextBlock Text="test" 
-                                       VerticalAlignment="Center"/>
+                                       VerticalAlignment="Center"
+                                       Margin="50,0,0,0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
