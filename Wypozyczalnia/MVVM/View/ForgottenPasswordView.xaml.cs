@@ -22,6 +22,9 @@ namespace Wypozyczalnia.MVVM.View
     /// </summary>
     public partial class ForgottenPasswordView : Window
     {
+        private bool isEmailSent = false;
+        private string newPasswordCode = string.Empty;
+        
         public ForgottenPasswordView()
         {
             InitializeComponent();
@@ -33,11 +36,30 @@ namespace Wypozyczalnia.MVVM.View
 
         private void forgottenPasswordSubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            string insertedEmail = "technikinformatykprogramista@gmail.com"; //forgottenPasswordInsertEmail.Text;
+            if (isEmailSent)
+            {
+                //TODO Logika zmiany hasła konta
+            }
+            else
+            {
+                string insertedEmail = "technikinformatykprogramista@gmail.com"; //forgottenPasswordInsertEmail.Text;
 
-            //TODO Logika sprawdzania poprawności danych
+                //TODO Logika sprawdzania poprawności danych
 
-            SendEmail(insertedEmail);
+                SendEmail(insertedEmail);
+                isEmailSent = true;
+                forgottenPasswordInsertEmail.IsEnabled = false;
+                forgottenPasswordInsertPesel.IsEnabled = false;
+                forgottenPasswordInsertSurname.IsEnabled = false;
+                forgottenPasswordInsertCode.IsEnabled = true;
+                forgottenPasswordInsertNewPassword.IsEnabled = true;
+                forgottenPasswordInfoText.Text = "Wprowadź nowe hasło oraz kod wysłany na adres E-mail";
+                forgottenPasswordSubmitBtn.Content = "Zmień hasło";
+            }
+            
+            
+            
+            
         }
 
         private void fpBackToLoginBtn_Click(object sender, EventArgs e)
@@ -77,7 +99,8 @@ namespace Wypozyczalnia.MVVM.View
             {
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
-            return res.ToString();
+            newPasswordCode = res.ToString();
+            return newPasswordCode;
         }
 
         
