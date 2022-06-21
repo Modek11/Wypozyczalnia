@@ -141,10 +141,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="KlasyPojazdow.cs">
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="MVVM\View\ForgottenPasswordView.xaml.cs">
+      <DependentUpon>ForgottenPasswordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -187,11 +191,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\ForgottenPasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
