@@ -22,8 +22,8 @@ WindowStartupLocation="CenterScreen"
                     </StackPanel>
                 
 
-                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Text="Witaj Ponownie!"/>
-                <TextBlock x:Name="loginInfoText"  HorizontalAlignment="Center" FontSize="17" FontWeight="SemiBold" Text="Zaloguj się do istniejącego konta"/>
+                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center"  FontSize="25" FontWeight="Bold" Text="Witaj Ponownie!"/>
+                <TextBlock x:Name="loginInfoText"  HorizontalAlignment="Center" TextAlignment="Center" FontSize="17" FontWeight="SemiBold" Text="Zaloguj się do istniejącego konta" TextWrapping="Wrap"/>
                 <TextBox Margin="0 50 0 0" x:Name="loginInsertEmail" Width="300" FontSize="18" materialDesign:HintAssist.Hint="E-mail" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <PasswordBox Margin="0 20 0 0" x:Name="loginInsertPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Hasło" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
                 <Button Margin="0 20 0 0" x:Name="loginLoginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" FontSize="18" Width="300" materialDesign:ButtonAssist.CornerRadius="10" Content="Zaloguj" Click="loginBtn_Click"/>

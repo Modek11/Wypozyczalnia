@@ -141,10 +141,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="KlasyPojazdow.cs">
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RegisterViewModel.cs" />
     <Compile Include="MVVM\View\ForgottenPasswordView.xaml.cs">
       <DependentUpon>ForgottenPasswordView.xaml</DependentUpon>
