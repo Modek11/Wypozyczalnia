@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Net.Mail;
 using System.Net;
 using System.Net.Security;
+using System.Text.RegularExpressions;
+
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -24,7 +26,8 @@ namespace Wypozyczalnia.MVVM.View
     {
         private bool isEmailSent = false;
         private string newPasswordCode = string.Empty;
-        
+        private int userID = 0;
+
         public ForgottenPasswordView()
         {
             InitializeComponent();
@@ -39,13 +42,57 @@ namespace Wypozyczalnia.MVVM.View
             if (isEmailSent)
             {
                 //TODO Logika zmiany hasła konta
+                if(forgottenPasswordInsertCode.Text != newPasswordCode)
+                {
+                    forgottenPasswordInfoText.Text = "Wprowadzony kod jest błędny!";
+                    return;
+                }
+                if(forgottenPasswordInsertNewPassword.Password == string.Empty)
+                {
+                    forgottenPasswordInfoText.Text = "Wprowadź nowe hasło!";
+                    return;
+                }
+
+                using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+                {
+                    foreach (var user in db.Uzytkownicy)
+                    {
+                        if (user.ID == userID)
+                        {
+                            user.Haslo = forgottenPasswordInsertNewPassword.Password;
+                            break;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    mainWindow.loginInfoText.Text = "Hasło zostało poprawnie zmienione! Możesz się teraz zalogować do konta!";
+                    this.Close();
+                }
             }
             else
             {
-                string insertedEmail = "technikinformatykprogramista@gmail.com"; //forgottenPasswordInsertEmail.Text;
+                
+                using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+                {
+                    foreach (var user in db.Uzytkownicy)
+                    {
+                        if (user.Nazwisko == forgottenPasswordInsertSurname.Text && user.PESEL == forgottenPasswordInsertPesel.Text && user.Email == forgottenPasswordInsertEmail.Text)
+                        {
+                            userID = user.ID;
+                            break;
+                        }
+                    }
+                }
 
-                //TODO Logika sprawdzania poprawności danych
+                if (userID == 0)
+                {
+                    forgottenPasswordInfoText.Text = "Nie znaleziono użytkownika!";
+                    return;
+                }
 
+                string insertedEmail = forgottenPasswordInsertEmail.Text.Trim();
                 SendEmail(insertedEmail);
                 isEmailSent = true;
                 forgottenPasswordInsertEmail.IsEnabled = false;
@@ -103,6 +150,10 @@ namespace Wypozyczalnia.MVVM.View
             return newPasswordCode;
         }
 
-        
+        private void forgottenPasswordInsertPesel_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }
