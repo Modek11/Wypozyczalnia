@@ -68,8 +68,12 @@
             </Button>
         </Grid>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
-            <TextBlock Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                   Foreground="White" FontSize="12" FontWeight="Medium" TextWrapping="Wrap" />
+            <TextBlock Margin="30,30,30,0" Text="99rent to sprawdzona wypożyczalnia samochodów oferująca wynajem samochodów  m.in. w Warszawie, Łodzi, Lublinie, Rzeszowie, Krakowie, Katowicach, Wrocławiu, Poznaniu, Szczecinie, Gdyni, Białymstoku, Bydgoszczy i Trójmieście oraz w pozostałych miastach sieci 39 oddziałów w całej Polsce."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
+            <TextBlock Margin="30,30,30,0" Text="Działamy na rynku od 2008 roku – od tej pory poprzez dynamiczny i nieustanny rozwój przedsiębiorstwa, zajęliśmy czołowe miejsce na rynku wypożyczalni samochodów w Polsce. Dwukrotnie zostaliśmy nagrodzeni prestiżową nagrodą FLEET DERBY za rok 2013 i 2014 oraz za 2018, a także nagrodami DIAMENT FORBES 2016 i EKOFLOTA 2016 i GEPARD BIZNESU."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
+            <TextBlock Margin="30,30,30,0" Text="Naszą stabilną pozycję rynkową potwierdza przynależność do Grupy Firm Rent a Car, która skupia liderów wśród wypożyczalni samochodów w Polsce, działającej w ramach struktury organizacyjnej Polskiego Związku Wynajmu i Leasingu Pojazdów. Jesteśmy także Oficjalnym Partnerem Reprezentacji Polski w Piłce Nożnej. Nasza flota składa się z ponad 2000 sprawdzonych modeli, dających Klientowi satysfakcję z ich użytkowania."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
         </StackPanel>
         <ContentControl Grid.Row="1" Grid.ColumnSpan="3" Content="{Binding CurrentView}"/>
     </Grid>
