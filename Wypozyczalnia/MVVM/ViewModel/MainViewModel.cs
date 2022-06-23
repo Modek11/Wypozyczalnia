@@ -3,40 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.ViewModel
 {
-    class MainViewModel //: ObservableObject
+    class MainViewModel : ObservableObject
     {
 
 
-        /* 
-         public RelayCommand HomeViewmodel{get; set;}
-        public RelayCommand okno2{get; set;}
-         public HomeViewModel HomeVM { get; set; }
-          public okno2 okno2 { get; set; }
-         private object _currentView;
-         public object CurrentView
-         {
-             get { return _currentView;  }
-             set {
-                 _currentView = value;
-                 OnPropertyChanged();
-             }
+        
+         public RelayCommand HomeViewCommand{get; set;}
+        public RelayCommand ContactViewCommand{get; set;}
+        public RelayCommand RentaCarViewCommand { get; set; }
 
-         }
-         public MainViewModel()
-         {
-             HomeVm = new HomeViewModel();
-            HomeVm222 = new okno2();
+        public RelayCommand RentHistoryViewCommand { get; set; }
+
+        public HomeViewModel HomeVM { get; set; }
+       public ContactViewModel ContactVM { get; set; }
+
+        public RentaCarViewModel RentVM { get; set; }
+
+        public RentHistoryViewModel RentHistoryVM { get; set; }
+
+        private object _currentView;
+        public object CurrentView
+        {
+            get { return _currentView;  }
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged();
+            }
+
+        }
+        public MainViewModel()
+        {
+            HomeVM = new HomeViewModel();
+            ContactVM = new ContactViewModel();
+            RentVM = new RentaCarViewModel();
+            RentHistoryVM = new RentHistoryViewModel();
+
             HomeViewCommand = new RelayCommand(o=>
         {
-            CurrentView=HomeVM
+            CurrentView = HomeVM;
         });
-        okno2 = new RelayCommand(o=>
-        {
-            CurrentView=okno2
-        });
-         }*/
+
+            ContactViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = ContactVM;
+            });
+
+            RentaCarViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentVM;
+            });
+            RentHistoryViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentHistoryVM;
+            });
+        }
     }
 }

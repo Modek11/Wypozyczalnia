@@ -47,7 +47,10 @@ namespace Wypozyczalnia
         {
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
             {
-                string insertedEmail = loginInsertEmail.Text;
+
+
+
+                /*string insertedEmail = loginInsertEmail.Text;
                 string insertedPassword = loginInsertPassword.Password;
 
                 foreach (var user in db.Uzytkownicy)
@@ -67,6 +70,10 @@ namespace Wypozyczalnia
                     }
                 }
                 loginInfoText.Text = "Błędny email!";
+                */
+                HomeView HomePage = new HomeView();
+                HomePage.Show();
+                this.Close();
             }
         }
 

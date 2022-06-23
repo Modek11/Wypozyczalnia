@@ -146,13 +146,29 @@
     <Compile Include="KlasyPojazdow.cs">
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\ContactViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RentaCarViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RentHistoryViewModel.cs" />
+    <Compile Include="MVVM\View\ContactView.xaml.cs">
+      <DependentUpon>ContactView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\ForgottenPasswordView.xaml.cs">
       <DependentUpon>ForgottenPasswordView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RentaCarView.xaml.cs">
+      <DependentUpon>RentaCarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RentHistoryView.xaml.cs">
+      <DependentUpon>RentHistoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Samochody.cs">
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
@@ -193,11 +209,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\ContactView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\ForgottenPasswordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\RentaCarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\RentHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
