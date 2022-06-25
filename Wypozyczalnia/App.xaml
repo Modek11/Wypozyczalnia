@@ -30,6 +30,10 @@
             <DataTemplate DataType="{x:Type viewModel:RentHistoryViewModel}">
                 <view:RentHistoryView/>
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:HomeContentViewModel}">
+                <view:HomeContentView/>
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

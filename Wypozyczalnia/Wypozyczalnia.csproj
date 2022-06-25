@@ -147,6 +147,7 @@
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\ContactViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\HomeContentViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RegisterViewModel.cs" />
@@ -157,6 +158,9 @@
     </Compile>
     <Compile Include="MVVM\View\ForgottenPasswordView.xaml.cs">
       <DependentUpon>ForgottenPasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\HomeContentView.xaml.cs">
+      <DependentUpon>HomeContentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -214,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\ForgottenPasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\HomeContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

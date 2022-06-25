@@ -11,15 +11,19 @@ namespace Wypozyczalnia.MVVM.ViewModel
     {
 
 
-        
-         public RelayCommand HomeViewCommand{get; set;}
+       
+
+        public RelayCommand HomeContentViewCommand { get; set;}
         public RelayCommand ContactViewCommand{get; set;}
         public RelayCommand RentaCarViewCommand { get; set; }
 
         public RelayCommand RentHistoryViewCommand { get; set; }
 
-        public HomeViewModel HomeVM { get; set; }
-       public ContactViewModel ContactVM { get; set; }
+
+        public HomeContentViewModel HomeContentVM { get; set; }
+        
+
+        public ContactViewModel ContactVM { get; set; }
 
         public RentaCarViewModel RentVM { get; set; }
 
@@ -38,15 +42,18 @@ namespace Wypozyczalnia.MVVM.ViewModel
         }
         public MainViewModel()
         {
-            HomeVM = new HomeViewModel();
+            
+            HomeContentVM = new HomeContentViewModel();
             ContactVM = new ContactViewModel();
             RentVM = new RentaCarViewModel();
             RentHistoryVM = new RentHistoryViewModel();
+            CurrentView = HomeContentVM;
 
-            HomeViewCommand = new RelayCommand(o=>
+            HomeContentViewCommand = new RelayCommand(o=>
         {
-            CurrentView = HomeVM;
+            CurrentView = HomeContentVM;
         });
+            
 
             ContactViewCommand = new RelayCommand(o =>
             {
@@ -56,6 +63,10 @@ namespace Wypozyczalnia.MVVM.ViewModel
             RentaCarViewCommand = new RelayCommand(o =>
             {
                 CurrentView = RentVM;
+            });
+            RentHistoryViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentHistoryVM;
             });
             RentHistoryViewCommand = new RelayCommand(o =>
             {

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Wypozyczalnia.MVVM.View.HomeContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wypozyczalnia.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#181735">
+    <Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+            <TextBlock Margin="30,30,30,0" Text="99rent to sprawdzona wypożyczalnia samochodów oferująca wynajem samochodów  m.in. w Warszawie, Łodzi, Lublinie, Rzeszowie, Krakowie, Katowicach, Wrocławiu, Poznaniu, Szczecinie, Gdyni, Białymstoku, Bydgoszczy i Trójmieście oraz w pozostałych miastach sieci 39 oddziałów w całej Polsce."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
+            <TextBlock Margin="30,30,30,0" Text="Działamy na rynku od 2008 roku – od tej pory poprzez dynamiczny i nieustanny rozwój przedsiębiorstwa, zajęliśmy czołowe miejsce na rynku wypożyczalni samochodów w Polsce. Dwukrotnie zostaliśmy nagrodzeni prestiżową nagrodą FLEET DERBY za rok 2013 i 2014 oraz za 2018, a także nagrodami DIAMENT FORBES 2016 i EKOFLOTA 2016 i GEPARD BIZNESU."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
+            <TextBlock Margin="30,30,30,0" Text="Naszą stabilną pozycję rynkową potwierdza przynależność do Grupy Firm Rent a Car, która skupia liderów wśród wypożyczalni samochodów w Polsce, działającej w ramach struktury organizacyjnej Polskiego Związku Wynajmu i Leasingu Pojazdów. Jesteśmy także Oficjalnym Partnerem Reprezentacji Polski w Piłce Nożnej. Nasza flota składa się z ponad 2000 sprawdzonych modeli, dających Klientowi satysfakcję z ich użytkowania."
+                   Foreground="White" FontSize="15" FontWeight="Light" TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</UserControl>
