@@ -3,40 +3,84 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.ViewModel
 {
-    class MainViewModel //: ObservableObject
+    class MainViewModel : ObservableObject
     {
 
 
-        /* 
-         public RelayCommand HomeViewmodel{get; set;}
-        public RelayCommand okno2{get; set;}
-         public HomeViewModel HomeVM { get; set; }
-          public okno2 okno2 { get; set; }
-         private object _currentView;
-         public object CurrentView
-         {
-             get { return _currentView;  }
-             set {
-                 _currentView = value;
-                 OnPropertyChanged();
-             }
+       
 
-         }
-         public MainViewModel()
-         {
-             HomeVm = new HomeViewModel();
-            HomeVm222 = new okno2();
-            HomeViewCommand = new RelayCommand(o=>
+        public RelayCommand HomeContentViewCommand { get; set;}
+        public RelayCommand ContactViewCommand{get; set;}
+        public RelayCommand RentaCarViewCommand { get; set; }
+        public RelayCommand RentHistoryViewCommand { get; set; }
+        public RelayCommand ChangePasswordCommand { get; set; }
+
+
+        public HomeContentViewModel HomeContentVM { get; set; }
+        
+
+        public ContactViewModel ContactVM { get; set; }
+
+        public RentaCarViewModel RentVM { get; set; }
+
+        public RentHistoryViewModel RentHistoryVM { get; set; }
+
+        public ChangePasswordViewModel ChangePWVM { get; set; }
+
+        private object _currentView;
+        public object CurrentView
         {
-            CurrentView=HomeVM
-        });
-        okno2 = new RelayCommand(o=>
+            get { return _currentView;  }
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged();
+            }
+
+        }
+        public MainViewModel()
         {
-            CurrentView=okno2
+            
+            HomeContentVM = new HomeContentViewModel();
+            ContactVM = new ContactViewModel();
+            RentVM = new RentaCarViewModel();
+            RentHistoryVM = new RentHistoryViewModel();
+            ChangePWVM = new ChangePasswordViewModel();
+            CurrentView = HomeContentVM;
+
+            HomeContentViewCommand = new RelayCommand(o=>
+        {
+            CurrentView = HomeContentVM;
         });
-         }*/
+            
+
+            ContactViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = ContactVM;
+            });
+
+            RentaCarViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentVM;
+            });
+            RentHistoryViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentHistoryVM;
+            });
+            RentHistoryViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RentHistoryVM;
+
+            });
+            ChangePasswordCommand = new RelayCommand(o =>
+            {
+                CurrentView = ChangePWVM;
+
+            });
+        }
     }
 }

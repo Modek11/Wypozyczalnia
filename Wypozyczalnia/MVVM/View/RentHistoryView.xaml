@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Wypozyczalnia.MVVM.View.RentHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wypozyczalnia.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#181735">
+    <Grid>
+            <TextBox x:Name="adminHistoryInsert" Visibility="Hidden" Width="250" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="300,30,0,0" Foreground="White" FontWeight="Heavy" FontSize="20" TextAlignment="Center" BorderThickness="2"/>
+            <Button x:Name="adminHistoryButton" Visibility="Hidden" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="650,30,0,0" Click="adminHistoryButton_Click"></Button>
+            <TextBlock x:Name="adminHistoryText" Visibility="Hidden" Text="Wprowadź mail do sprawdzenia ID" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-350,40,0,0" Foreground="White" FontWeight="Heavy" FontSize="20" TextWrapping="Wrap"></TextBlock>
+            <TextBlock x:Name="userHistoryText" Text="Twoje ostatnie wypożyczenia" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Foreground="White" FontWeight="Heavy" FontSize="30"></TextBlock>
+            <DataGrid x:Name="carRentalHistory" Width="700" Height="300" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,95,0,0"></DataGrid>
+    </Grid>
+</UserControl>

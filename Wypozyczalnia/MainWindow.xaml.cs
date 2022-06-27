@@ -52,18 +52,23 @@ namespace Wypozyczalnia
 
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if (insertedEmail == user.Email)
+                    if (insertedEmail != user.Email)
                     {
-                        if (insertedPassword == user.Haslo)
-                        {
-                            loginInfoText.Text = "Zalogowano poprawnie!";
-                            return;
-                        }
-                        else
-                        {
-                            loginInfoText.Text = "Błędne hasło!";
-                            return;
-                        }
+                        continue;
+                    }
+
+                    if (insertedPassword == user.Haslo)
+                    {
+                        HomeView homepage = new HomeView();
+                        homepage.Show();
+                        Application.Current.Properties["loggedUserId"] = user.ID;
+                        Application.Current.Properties["isLoggedUserAdmin"] = user.CzyPracownik;
+                        this.Close();
+                    }
+                    else
+                    {
+                        loginInfoText.Text = "Błędne hasło!";
+                        return;
                     }
                 }
                 loginInfoText.Text = "Błędny email!";
