@@ -146,6 +146,7 @@
     <Compile Include="KlasyPojazdow.cs">
       <DependentUpon>Wypozyczalnia.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ContactViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeContentViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
@@ -153,6 +154,9 @@
     <Compile Include="MVVM\ViewModel\RegisterViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RentaCarViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RentHistoryViewModel.cs" />
+    <Compile Include="MVVM\View\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
@@ -213,6 +217,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\ChangePasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\ContactView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +276,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Thin.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -288,6 +297,8 @@
     <Resource Include="images\auto.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\HomeBottom.png" />
+    <Resource Include="images\logo.png" />
     <Content Include="Wypozyczalnia.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Wypozyczalnia.edmx</DependentUpon>

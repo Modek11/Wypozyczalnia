@@ -20,9 +20,76 @@ namespace Wypozyczalnia.MVVM.View
     /// </summary>
     public partial class RentHistoryView : UserControl
     {
+        int loggedUserId = (int)Application.Current.Properties["loggedUserId"];
+        bool isLoggedUserAdmin = (bool)Application.Current.Properties["isLoggedUserAdmin"];
+
         public RentHistoryView()
         {
             InitializeComponent();
+            CheckIfAdmin(isLoggedUserAdmin);
+            ReloadContent(loggedUserId);
+        }
+
+        public void CheckIfAdmin(bool isLoggedUserAdmin)
+        {
+            if (isLoggedUserAdmin)
+            {
+                adminHistoryInsert.Visibility = Visibility.Visible;
+                adminHistoryButton.Visibility = Visibility.Visible;
+                adminHistoryText.Visibility = Visibility.Visible;
+                userHistoryText.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ReloadContent(int userId)
+        {
+            List<Samochody> userRentedCars = new List<Samochody>();
+            List<Wypozyczone> userRentedList = new List<Wypozyczone>();          
+            
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                userRentedCars = (from car in db.Samochody select car).ToList();
+                userRentedList = (from list in db.Wypozyczone select list).ToList();
+                
+                var Query = (
+                    from RentedList in userRentedList
+                    join RentedCars in userRentedCars
+                    on RentedList.ID_Uzytkownik equals RentedCars.ID
+                    where RentedList.ID_Uzytkownik == userId
+                    select new
+                    {
+                        Marka = RentedCars.Marka,
+                        Model = RentedCars.Model,
+                        DataOdbioru = RentedList.DataOdbioru.ToString("dd-MM-yyyy"),
+                        DataZwrotu = RentedList.DataZwrotu.ToString("dd-MM-yyyy")
+                    });
+
+
+                carRentalHistory.ItemsSource = Query;
+            }
+
+                
+        }
+
+        private void adminHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string insertedEmail = adminHistoryInsert.Text;
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                foreach (var user in db.Uzytkownicy)
+                {
+                    if(insertedEmail == user.Email)
+                    {
+                        ReloadContent(user.ID);
+                        adminHistoryText.Text = $"{user.Imie} {user.Nazwisko}";
+                        return;
+                    }
+                }
+                adminHistoryText.Text = "Nie odnaleziono E-maila w bazie danych!";
+            }
+
+
         }
     }
 }

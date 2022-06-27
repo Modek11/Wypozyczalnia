@@ -29,10 +29,11 @@ CREATE TABLE [dbo].[KlasyPojazdow](
 	)
 GO
 CREATE TABLE [dbo].[Wypozyczone](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[ID_Samochod] [int] NOT NULL,
 	[ID_Uzytkownik] [int] NOT NULL,
 	[DataOdbioru] [date] NOT NULL,
-	[DataZwrotu] [date] NOT NULL
+	[DataZwrotu] [date] NOT NULL,
 )
 GO
 CREATE TABLE [dbo].[Uzytkownicy](
@@ -69,6 +70,7 @@ INSERT [dbo].[Uzytkownicy] ([ID], [Imie], [Nazwisko], [PESEL], [NrTelefonu], [Em
 INSERT [dbo].[Uzytkownicy] ([ID], [Imie], [Nazwisko], [PESEL], [NrTelefonu], [Email], [Haslo], [LataPrawaJazdy], [CzyPracownik]) VALUES (8, N'Kasia', N'Kalinowska', N'44120166567', 516981586, N'Mihailka25@gmail.com', 'tajnehaslo123', 25, 0)
 INSERT [dbo].[Uzytkownicy] ([ID], [Imie], [Nazwisko], [PESEL], [NrTelefonu], [Email], [Haslo], [LataPrawaJazdy], [CzyPracownik]) VALUES (9, N'Fryderyk', N'Czarnecki', N'56092951713', 673237247, N'Lorenanna@gmail.com', 'tajnehaslo123', 16, 1)
 INSERT [dbo].[Uzytkownicy] ([ID], [Imie], [Nazwisko], [PESEL], [NrTelefonu], [Email], [Haslo], [LataPrawaJazdy], [CzyPracownik]) VALUES (10, N'Karolina', N'Czerwinska', N'02280776400', 791288651, N'hero555@gmail.com', 'tajnehaslo123', 12, 1)
+INSERT [dbo].[Uzytkownicy] ([ID], [Imie], [Nazwisko], [PESEL], [NrTelefonu], [Email], [Haslo], [LataPrawaJazdy], [CzyPracownik]) VALUES (11, N'a', N'a', N'00000000000', 100000000, N'a', N'a', NULL, 1)
 SET IDENTITY_INSERT [dbo].[Uzytkownicy] OFF
 GO
 
@@ -88,16 +90,18 @@ SET IDENTITY_INSERT [dbo].[Samochody] OFF
 GO
 
 GO
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (2, 1, CAST(N'2021-11-21' AS Date), CAST(N'2021-11-23' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (1, 6, CAST(N'2021-12-24' AS Date), CAST(N'2021-12-30' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (7, 2, CAST(N'2022-01-07' AS Date), CAST(N'2022-01-09' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (8, 8, CAST(N'2022-01-07' AS Date), CAST(N'2022-01-14' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (3, 7, CAST(N'2022-01-09' AS Date), CAST(N'2022-01-11' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (5, 1, CAST(N'2022-01-09' AS Date), CAST(N'2022-01-11' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (10, 4, CAST(N'2022-01-16' AS Date), CAST(N'2022-12-29' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (2, 8, CAST(N'2022-04-26' AS Date), CAST(N'2022-05-02' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (1, 6, CAST(N'2022-07-05' AS Date), CAST(N'2022-08-05' AS Date))
-INSERT [dbo].[Wypozyczone] ([ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (8, 10, CAST(N'2022-09-05' AS Date), CAST(N'2022-10-15' AS Date))
+SET IDENTITY_INSERT [dbo].[Wypozyczone] ON 
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (1, 2, 1, CAST(N'2021-11-21' AS Date), CAST(N'2021-11-23' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (2, 1, 6, CAST(N'2021-12-24' AS Date), CAST(N'2021-12-30' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (3, 7, 2, CAST(N'2022-01-07' AS Date), CAST(N'2022-01-09' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (4, 8, 8, CAST(N'2022-01-07' AS Date), CAST(N'2022-01-14' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (5, 3, 7, CAST(N'2022-01-09' AS Date), CAST(N'2022-01-11' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (6, 5, 1, CAST(N'2022-01-09' AS Date), CAST(N'2022-01-11' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (7, 10, 4, CAST(N'2022-01-16' AS Date), CAST(N'2022-12-29' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (8, 2, 8, CAST(N'2022-04-26' AS Date), CAST(N'2022-05-02' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (9, 1, 6, CAST(N'2022-07-05' AS Date), CAST(N'2022-08-05' AS Date))
+INSERT [dbo].[Wypozyczone] ([ID], [ID_Samochod], [ID_Uzytkownik], [DataOdbioru], [DataZwrotu]) VALUES (10, 8, 10, CAST(N'2022-09-05' AS Date), CAST(N'2022-10-15' AS Date))
+SET IDENTITY_INSERT [dbo].[Wypozyczone] OFF
 
 GO
 ALTER TABLE [dbo].[Samochody]  WITH CHECK ADD FOREIGN KEY([ID_KlasaPojazdu])

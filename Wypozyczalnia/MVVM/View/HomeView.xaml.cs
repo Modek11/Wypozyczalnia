@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Wypozyczalnia.MVVM.View
-{
+{    
     /// <summary>
     /// Interaction logic for HomeView.xaml
     /// </summary>
@@ -38,6 +38,11 @@ namespace Wypozyczalnia.MVVM.View
                 this.Close();
 
 
+        }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            DragMove();
         }
     }
 }
