@@ -16,7 +16,7 @@ WindowStartupLocation="CenterScreen"
 
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25">
         <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
-            <StackPanel>
+            <StackPanel x:Name="loginStackPanel">
                     <StackPanel Margin="16 20 20 6" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="btn_exit" ToolTip="Close application" Content="Wyjdź" Click="exitApp"/>
                     </StackPanel>

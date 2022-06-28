@@ -2,3 +2,9 @@ Resetowanie hasła poprzez wysyłanie maila
 Tworzenie nowego konta
 Zmiana atrybutów przez konto admina ???
 Zmiana hasła z poziomu aplikacji
+Historia wypozyczen z poziomu administratora
+Błąd połączenia z bazą danych na starcie programu
+
+TODO:
+https://github.com/dotnet/ef6/issues/148
+ConnectRetryCount (Połączenie z bazą danych na początku mega długie)

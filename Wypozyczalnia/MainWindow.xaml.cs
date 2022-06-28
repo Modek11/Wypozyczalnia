@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Wypozyczalnia.MVVM.View;
+using System.Threading.Tasks;
 
 namespace Wypozyczalnia
 {
@@ -26,6 +29,7 @@ namespace Wypozyczalnia
         public MainWindow()
         {
             InitializeComponent();
+            CheckIfDatabaseFound();
         }
 
         private void exitApp(object sender, RoutedEventArgs e)
@@ -43,6 +47,25 @@ namespace Wypozyczalnia
             Login();
         }
 
+        private void CheckIfDatabaseFound()
+        {
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                if (!db.Database.Exists())
+                {
+                    loginInfoText.Text = "Błąd połączenia z bazą danych!";
+                    foreach (var box in loginStackPanel.Children)
+                    {
+                        var type = box.GetType();
+                        if (type == typeof(Button))
+                        {
+                            ((Button)box).IsEnabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
         private void Login()
         {
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
@@ -52,18 +75,23 @@ namespace Wypozyczalnia
 
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if (insertedEmail == user.Email)
+                    if (insertedEmail != user.Email)
                     {
-                        if (insertedPassword == user.Haslo)
-                        {
-                            loginInfoText.Text = "Zalogowano poprawnie!";
-                            return;
-                        }
-                        else
-                        {
-                            loginInfoText.Text = "Błędne hasło!";
-                            return;
-                        }
+                        continue;
+                    }
+
+                    if (insertedPassword == user.Haslo)
+                    {
+                        HomeView homepage = new HomeView();
+                        homepage.Show();
+                        Application.Current.Properties["loggedUserId"] = user.ID;
+                        Application.Current.Properties["isLoggedUserAdmin"] = user.CzyPracownik;
+                        this.Close();
+                    }
+                    else
+                    {
+                        loginInfoText.Text = "Błędne hasło!";
+                        return;
                     }
                 }
                 loginInfoText.Text = "Błędny email!";
