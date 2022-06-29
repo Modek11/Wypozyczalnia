@@ -44,17 +44,18 @@ namespace Wypozyczalnia.MVVM.View
         public void ReloadContent(int userId)
         {
             List<Samochody> userRentedCars = new List<Samochody>();
-            List<Wypozyczone> userRentedList = new List<Wypozyczone>();          
+            List<Wypozyczone> userRentedList = new List<Wypozyczone>();
             
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
             {
                 userRentedCars = (from car in db.Samochody select car).ToList();
                 userRentedList = (from list in db.Wypozyczone select list).ToList();
+
                 
                 var Query = (
                     from RentedList in userRentedList
                     join RentedCars in userRentedCars
-                    on RentedList.ID_Uzytkownik equals RentedCars.ID
+                    on RentedList.ID_Samochod equals RentedCars.ID
                     where RentedList.ID_Uzytkownik == userId
                     select new
                     {

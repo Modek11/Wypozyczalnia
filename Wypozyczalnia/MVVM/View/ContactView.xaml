@@ -12,7 +12,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Rezerwacje: 423-234-554 nazwa@99rent.com" FontWeight="Medium" Foreground="White" FontSize="20" HorizontalAlignment="Center" Grid.ColumnSpan="2"   Width="430" Margin="185,0,185,370"/>
+        <TextBlock Text="Rezerwacje: 423-234-554 raficar@interia.com" FontWeight="Medium" Foreground="White" FontSize="20" HorizontalAlignment="Center" Grid.ColumnSpan="2"   Width="430" Margin="185,0,185,370"/>
         <StackPanel Orientation="Vertical" Grid.Column="0" Margin="15,35,0,0">
             <TextBlock Text="Dane Firmy" Foreground="White" FontSize="25"/>
             <TextBlock Text="nazwa firmy"  Foreground="White" FontWeight="ExtraLight" FontSize="20"/>
@@ -25,10 +25,10 @@
         <StackPanel Orientation="Vertical" Grid.Column="1" Margin="20,35,0,0">
             <TextBlock Text="Biuro Obsługi Klienta" Foreground="White" FontSize="25"/>
             <TextBlock Text="Telefon: +48 321-421-222"  Foreground="White" FontWeight="ExtraLight" FontSize="20"/>
-            <TextBlock Text="email: biuro@email.com" Foreground="White"  FontWeight="ExtraLight" FontSize="20"/>
+            <TextBlock Text="email: raficar.customerservice@interia.com" Foreground="White"  FontWeight="ExtraLight" FontSize="20"/>
             <TextBlock Text="Dział Techniczny" FontSize="25" Foreground="White" Margin="0,50,0,0"/>
             <TextBlock Text="Telefon: +48 321-421-222" FontWeight="ExtraLight" Foreground="White" FontSize="20"/>
-            <TextBlock Text="Email: biuro@email.com" FontWeight="ExtraLight" Foreground="White" FontSize="20"/>
+            <TextBlock Text="Email: raficarit@interia.com" FontWeight="ExtraLight" Foreground="White" FontSize="20"/>
         </StackPanel>
         <Image Source="/images/HomeBottom.png" Margin="390,165,0,-165" Grid.ColumnSpan="2" />
     </Grid>

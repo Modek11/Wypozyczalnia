@@ -42,7 +42,7 @@ namespace Wypozyczalnia.MVVM.View
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
-            DragMove();
+            //DragMove();
         }
     }
 }

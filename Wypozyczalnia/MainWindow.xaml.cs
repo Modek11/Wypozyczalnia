@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -16,7 +17,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Wypozyczalnia.MVVM.View;
-using System.Threading.Tasks;
 
 namespace Wypozyczalnia
 {
@@ -24,6 +24,7 @@ namespace Wypozyczalnia
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+
     public partial class MainWindow : Window
     {
         public MainWindow()

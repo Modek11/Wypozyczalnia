@@ -3,3 +3,5 @@ Tworzenie nowego konta
 Zmiana atrybutów przez konto admina ???
 Zmiana hasła z poziomu aplikacji
 Historia wypozyczen z poziomu administratora
+Historia wypozyczen z poziomu administratora
+Błąd połączenia z bazą danych na starcie programu
