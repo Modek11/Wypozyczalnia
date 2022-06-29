@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:Wypozyczalnia.MVVM.View" xmlns:core="clr-namespace:Wypozyczalnia.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
         xmlns:viewModel="clr-namespace:Wypozyczalnia.MVVM.ViewModel"  
         mc:Ignorable="d"
-                Title="Home" Height="450" Width="800"
+                Title="Home" Height="485" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Background="#181735">
+        Background="#181735"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
             <RowDefinition></RowDefinition>
 
 
@@ -25,26 +26,27 @@
         </Grid.ColumnDefinitions>
         <Grid Background="#0F0F20" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="175*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="124*"/>
+                <ColumnDefinition Width="136*"/>
+                <ColumnDefinition Width="130*"/>
 
 
             </Grid.ColumnDefinitions>
 
 
-            <RadioButton x:Name="homeBarReturnHome" HorizontalContentAlignment="Right" VerticalAlignment="Bottom" Content="RafiCar" Foreground="White"  FontWeight="Heavy"  Style="{StaticResource MenuButtonTheme}"  Command="{Binding HomeContentViewCommand}"  IsChecked="{Binding IsChecked}" Margin="0,0,0,5" />
-            <RadioButton x:Name="homeBarYourCarRentals" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="Historia" Foreground="White"   FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentHistoryViewCommand}" Grid.ColumnSpan="2" Grid.Column="2" Margin="0,5,110,4" HorizontalAlignment="Right" Width="134"/>
-            <RadioButton x:Name="homeBarRentaCar" HorizontalContentAlignment="Left" VerticalAlignment="Bottom" Content="Wypożycz auto"  Foreground="White" FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentaCarViewCommand}" Grid.ColumnSpan="2" Grid.Column="1" Margin="10,5,127,4"/>
-            <RadioButton x:Name="homeBarContact" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="Kontakt" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ContactViewCommand}" Grid.ColumnSpan="2" Grid.Column="3" Margin="39,5,93,4"/>
-            <RadioButton x:Name="homeBarChangePassword" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="Zmień hasło" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ChangePasswordViewCommand}" Grid.ColumnSpan="2" Grid.Column="4" Margin="62,5,70,4"/>
+            <RadioButton x:Name="homeBarReturnHome" HorizontalAlignment="Center"  Content="RafiCar" Foreground="White"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding HomeContentViewCommand}"  IsChecked="{Binding IsChecked}" Width="120"  />
+            <RadioButton x:Name="homeBarYourCarRentals"  Content="Historia" Foreground="White"   FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentHistoryViewCommand}" Grid.Column="3" HorizontalAlignment="Center" Width="115"  />
+            <RadioButton x:Name="homeBarRentaCar"  Content="Wypożycz auto"  Foreground="White" FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentaCarViewCommand}" Grid.Column="1"/>
+            <RadioButton x:Name="homeBarContact"  Content="Kontakt" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ContactViewCommand}" Grid.Column="4"   />
+            <RadioButton x:Name="homeBarChangePassword"  Content="Zmień hasło" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ChangePasswordViewCommand}" Grid.Column="5" Margin="0,0,10,0" />
 
 
 
-            <Button x:Name="homeBarLogOut" Content="Wyloguj" Grid.Column="5" HorizontalAlignment="Right" Foreground="White" FontSize="14" FontWeight="Medium"  Click="homeBarLogOut_Click" >
+            <Button x:Name="homeBarLogOut" Content="Wyloguj" Grid.Column="6" Foreground="White" FontSize="14" FontWeight="Medium"  Click="homeBarLogOut_Click" Margin="0,-1,0,1" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#Fe6584"/>
