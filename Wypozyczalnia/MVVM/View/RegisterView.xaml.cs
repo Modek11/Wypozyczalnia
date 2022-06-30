@@ -48,7 +48,7 @@ namespace Wypozyczalnia.MVVM.View
             this.Close();
         }
 
-        private void Register() //TODO
+        private void Register()
         {
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
             {
@@ -59,7 +59,6 @@ namespace Wypozyczalnia.MVVM.View
                 string insertedPassword = registerInsertPassword.Password.Trim();
                 string insertedConfirmPassword = registerConfirmPassword.Password.Trim();
                 bool parsedPhoneNumber = Int32.TryParse(registerInsertNumber.Text.Trim(), out int insertedPhoneNumber);
-                //bool parsedDrivingLicenseYears = short.TryParse(Console.ReadLine().Trim(), out short insertedDrivingLicenseYears);
 
                 if (insertedName == string.Empty || insertedSurname == string.Empty || insertedEmail == string.Empty || insertedPESEL == string.Empty || insertedPassword == string.Empty || insertedConfirmPassword == string.Empty || !parsedPhoneNumber)
                 {

@@ -26,7 +26,7 @@ namespace Wypozyczalnia.MVVM.View
     {
         private bool isEmailSent = false;
         private string newPasswordCode = string.Empty;
-        private int userID = 0;
+        private int userID;
 
         public ForgottenPasswordView()
         {
@@ -41,7 +41,6 @@ namespace Wypozyczalnia.MVVM.View
         {
             if (isEmailSent)
             {
-                //TODO Logika zmiany hasła konta
                 if(forgottenPasswordInsertCode.Text != newPasswordCode)
                 {
                     forgottenPasswordInfoText.Text = "Wprowadzony kod jest błędny!";
