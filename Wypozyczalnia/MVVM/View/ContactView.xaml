@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#181735">
-    <Grid>
+    <Grid Margin="0,20,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -15,7 +15,7 @@
         <TextBlock Text="Rezerwacje: 423-234-554 raficar@interia.com" FontWeight="Medium" Foreground="White" FontSize="20" HorizontalAlignment="Center" Grid.ColumnSpan="2"   Width="430" Margin="185,0,185,370"/>
         <StackPanel Orientation="Vertical" Grid.Column="0" Margin="15,35,0,0">
             <TextBlock Text="Dane Firmy" Foreground="White" FontSize="25"/>
-            <TextBlock Text="nazwa firmy"  Foreground="White" FontWeight="ExtraLight" FontSize="20"/>
+            <TextBlock Text="RafiCar"  Foreground="White" FontWeight="ExtraLight" FontSize="20"/>
             <TextBlock Text="Ułanów 3"  Foreground="White" FontWeight="ExtraLight" FontSize="20"/>
             <TextBlock Text="31-450 Kraków" Foreground="White"  FontWeight="ExtraLight" FontSize="20"/>
             <TextBlock Text="Autorzy aplikacji" FontSize="25" Foreground="White" Margin="0,25,0,0"/>

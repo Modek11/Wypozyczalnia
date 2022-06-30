@@ -30,7 +30,6 @@ namespace Wypozyczalnia
         public MainWindow()
         {
             InitializeComponent();
-            CheckIfDatabaseFound();
         }
 
         private void exitApp(object sender, RoutedEventArgs e)

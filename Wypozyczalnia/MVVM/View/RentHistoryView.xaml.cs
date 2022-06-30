@@ -57,13 +57,14 @@ namespace Wypozyczalnia.MVVM.View
                     join RentedCars in userRentedCars
                     on RentedList.ID_Samochod equals RentedCars.ID
                     where RentedList.ID_Uzytkownik == userId
+                    orderby RentedList.DataOdbioru, RentedList.DataZwrotu
                     select new
                     {
                         Marka = RentedCars.Marka,
                         Model = RentedCars.Model,
                         DataOdbioru = RentedList.DataOdbioru.ToString("dd-MM-yyyy"),
                         DataZwrotu = RentedList.DataZwrotu.ToString("dd-MM-yyyy")
-                    });
+                    }).Distinct();
 
 
                 carRentalHistory.ItemsSource = Query;

@@ -17,7 +17,7 @@ namespace Wypozyczalnia.MVVM.ViewModel
         public RelayCommand ContactViewCommand{get; set;}
         public RelayCommand RentaCarViewCommand { get; set; }
         public RelayCommand RentHistoryViewCommand { get; set; }
-        public RelayCommand ChangePasswordCommand { get; set; }
+        public RelayCommand ChangePasswordViewCommand { get; set; }
 
 
         public HomeContentViewModel HomeContentVM { get; set; }
@@ -76,7 +76,7 @@ namespace Wypozyczalnia.MVVM.ViewModel
                 CurrentView = RentHistoryVM;
 
             });
-            ChangePasswordCommand = new RelayCommand(o =>
+            ChangePasswordViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ChangePWVM;
 

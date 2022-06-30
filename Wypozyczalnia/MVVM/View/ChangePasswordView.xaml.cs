@@ -20,9 +20,49 @@ namespace Wypozyczalnia.MVVM.View
     /// </summary>
     public partial class ChangePasswordView : UserControl
     {
+        private int loggedUserId = (int)Application.Current.Properties["loggedUserId"];
         public ChangePasswordView()
         {
             InitializeComponent();
+        }
+
+        private void changePasswordSubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (changePasswordOld.Password == string.Empty || changePasswordNew.Password == string.Empty || changePasswordNewRepeat.Password == string.Empty)
+            {
+                changePasswordInfoText.Text = "Wypełnij wszystkie pola";
+                return;
+            }
+
+            if (changePasswordNew.Password != changePasswordNewRepeat.Password)
+            {
+                changePasswordInfoText.Text = "Wprowadzone nowe hasła różnią się od siebie!";
+                return;
+            }
+
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                foreach (var user in db.Uzytkownicy)
+                {
+                    if (user.ID == loggedUserId)
+                    {
+                        if(user.Haslo != changePasswordOld.Password)
+                        {
+                            changePasswordInfoText.Text = "Podane hasło nie jest aktualnym hasłem konta!";
+                            return;
+                        }
+                        user.Haslo = changePasswordNewRepeat.Password;
+                        break;
+                    }
+                }
+
+                db.SaveChanges();
+                changePasswordInfoText.Text = "Hasło zostało poprawnie zmienione!";
+                changePasswordOld.IsEnabled = false;
+                changePasswordNew.IsEnabled = false;
+                changePasswordNewRepeat.IsEnabled = false;
+                changePasswordSubmitButton.IsEnabled = false;
+            }
         }
     }
 }
