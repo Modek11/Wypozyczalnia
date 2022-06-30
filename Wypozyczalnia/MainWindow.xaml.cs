@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Wypozyczalnia.MVVM.View;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia
 {
@@ -30,6 +31,7 @@ namespace Wypozyczalnia
         public MainWindow()
         {
             InitializeComponent();
+            CheckIfDatabaseFound();
         }
 
         private void exitApp(object sender, RoutedEventArgs e)
@@ -75,12 +77,12 @@ namespace Wypozyczalnia
 
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if (insertedEmail != user.Email)
+                    if (user.Email != EncryptDecrypt.EncryptPlainTextToCipherText(insertedEmail))
                     {
                         continue;
                     }
 
-                    if (insertedPassword == user.Haslo)
+                    if (user.Haslo == EncryptDecrypt.EncryptPlainTextToCipherText(insertedPassword))
                     {
                         HomeView homepage = new HomeView();
                         homepage.Show();

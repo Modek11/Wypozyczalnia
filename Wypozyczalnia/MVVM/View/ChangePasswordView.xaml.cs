@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -46,12 +47,12 @@ namespace Wypozyczalnia.MVVM.View
                 {
                     if (user.ID == loggedUserId)
                     {
-                        if(user.Haslo != changePasswordOld.Password)
+                        if(user.Haslo != EncryptDecrypt.EncryptPlainTextToCipherText(changePasswordOld.Password))
                         {
                             changePasswordInfoText.Text = "Podane hasło nie jest aktualnym hasłem konta!";
                             return;
                         }
-                        user.Haslo = changePasswordNewRepeat.Password;
+                        user.Haslo = EncryptDecrypt.EncryptPlainTextToCipherText(changePasswordNewRepeat.Password);
                         break;
                     }
                 }
