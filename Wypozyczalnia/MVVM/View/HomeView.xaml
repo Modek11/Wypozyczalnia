@@ -26,34 +26,33 @@
         </Grid.ColumnDefinitions>
         <Grid Background="#0F0F20" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
                 <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="175*"/>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition Width="115*"/>
-                <ColumnDefinition Width="124*"/>
-                <ColumnDefinition Width="136*"/>
-                <ColumnDefinition Width="130*"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="120*"/>
 
 
             </Grid.ColumnDefinitions>
 
 
-            <RadioButton x:Name="homeBarReturnHome" HorizontalAlignment="Center"  Content="RafiCar" Foreground="White"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding HomeContentViewCommand}"  IsChecked="{Binding IsChecked}" Width="120"  />
-            <RadioButton x:Name="homeBarYourCarRentals"  Content="Historia" Foreground="White"   FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentHistoryViewCommand}" Grid.Column="3" HorizontalAlignment="Center" Width="115"  />
-            <RadioButton x:Name="homeBarRentaCar"  Content="Wypożycz auto"  Foreground="White" FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentaCarViewCommand}" Grid.Column="1"/>
-            <RadioButton x:Name="homeBarContact"  Content="Kontakt" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ContactViewCommand}" Grid.Column="4"   />
-            <RadioButton x:Name="homeBarChangePassword"  Content="Zmień hasło" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ChangePasswordViewCommand}" Grid.Column="5" Margin="0,0,10,0" />
+            <RadioButton x:Name="homeBarReturnHome" HorizontalAlignment="Center"  Content="RafiCar" FontSize="25" FontWeight="Heavy" Foreground="White"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding HomeContentViewCommand}"  IsChecked="{Binding IsChecked}" Width="180"  />
+            <RadioButton x:Name="homeBarYourCarRentals" Content="Historia" Foreground="White"   FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentHistoryViewCommand}" Grid.Column="2" HorizontalAlignment="Center" Width="135"  />
+            <RadioButton x:Name="homeBarRentaCar" HorizontalAlignment="Center" Content="Wypożycz auto"  Foreground="White" FontWeight="Light"   Style="{StaticResource MenuButtonTheme}" Command="{Binding RentaCarViewCommand}" Grid.Column="1" Width="175"/>
+            <RadioButton x:Name="homeBarContact" HorizontalAlignment="Center" Content="Kontakt" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ContactViewCommand}" Grid.Column="3"  Width="135" />
+            <RadioButton x:Name="homeBarChangePassword" HorizontalAlignment="Center" Content="Zmień hasło" Foreground="White"  FontWeight="Light"   Style="{StaticResource MenuButtonTheme}"  Command="{Binding ChangePasswordViewCommand}" Grid.Column="4" Margin="0,0,10,0" Width="150"/>
 
 
 
-            <Button x:Name="homeBarLogOut" Content="Wyloguj" Grid.Column="6" Foreground="White" FontSize="14" FontWeight="Medium"  Click="homeBarLogOut_Click" Margin="0,-1,0,1" >
+            <Button x:Name="homeBarLogOut" Content="Wyloguj" Grid.Column="5" Foreground="White" FontSize="14" FontWeight="Medium"  Click="homeBarLogOut_Click" Margin="0,-1,0,1" >
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="#Fe6584"/>
+                        <Setter Property="Background" Value="DarkViolet"/>
                         <Setter Property="Cursor" Value="Hand"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#ff4c70"/>
+                                <Setter Property="Background" Value="BlueViolet"/>
                             </Trigger>
 
                         </Style.Triggers>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -81,7 +82,7 @@ namespace Wypozyczalnia.MVVM.View
             {
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if(insertedEmail == user.Email)
+                    if(user.Email == EncryptDecrypt.EncryptPlainTextToCipherText(insertedEmail))
                     {
                         ReloadContent(user.ID);
                         adminHistoryText.Text = $"{user.Imie} {user.Nazwisko}";
