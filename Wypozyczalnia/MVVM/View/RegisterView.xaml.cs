@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Wypozyczalnia.MVVM.View;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -48,7 +49,7 @@ namespace Wypozyczalnia.MVVM.View
             this.Close();
         }
 
-        private void Register() //TODO
+        private void Register()
         {
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
             {
@@ -59,7 +60,6 @@ namespace Wypozyczalnia.MVVM.View
                 string insertedPassword = registerInsertPassword.Password.Trim();
                 string insertedConfirmPassword = registerConfirmPassword.Password.Trim();
                 bool parsedPhoneNumber = Int32.TryParse(registerInsertNumber.Text.Trim(), out int insertedPhoneNumber);
-                //bool parsedDrivingLicenseYears = short.TryParse(Console.ReadLine().Trim(), out short insertedDrivingLicenseYears);
 
                 if (insertedName == string.Empty || insertedSurname == string.Empty || insertedEmail == string.Empty || insertedPESEL == string.Empty || insertedPassword == string.Empty || insertedConfirmPassword == string.Empty || !parsedPhoneNumber)
                 {
@@ -81,7 +81,7 @@ namespace Wypozyczalnia.MVVM.View
 
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if (insertedEmail == user.Email)
+                    if (insertedEmail == EncryptDecrypt.EncryptPlainTextToCipherText(user.Email))
                     {
                         registerInfoText.Text = "Podany E-mail już istnieje!";
                         return;
@@ -97,6 +97,9 @@ namespace Wypozyczalnia.MVVM.View
                         return;
                     }
                 }
+
+                insertedPassword = EncryptDecrypt.EncryptPlainTextToCipherText(insertedPassword);
+                insertedEmail = EncryptDecrypt.EncryptPlainTextToCipherText(insertedEmail);
 
                 db.Uzytkownicy.Add(new Uzytkownicy { Imie = insertedName, Nazwisko = insertedSurname, PESEL = insertedPESEL, NrTelefonu = insertedPhoneNumber, Email = insertedEmail, Haslo = insertedPassword});
                 db.SaveChanges();

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Wypozyczalnia.MVVM.View;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia
 {
@@ -21,11 +25,13 @@ namespace Wypozyczalnia
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            CheckIfDatabaseFound();
         }
 
         private void exitApp(object sender, RoutedEventArgs e)
@@ -43,6 +49,25 @@ namespace Wypozyczalnia
             Login();
         }
 
+        private void CheckIfDatabaseFound()
+        {
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                if (!db.Database.Exists())
+                {
+                    loginInfoText.Text = "Błąd połączenia z bazą danych!";
+                    foreach (var box in loginStackPanel.Children)
+                    {
+                        var type = box.GetType();
+                        if (type == typeof(Button))
+                        {
+                            ((Button)box).IsEnabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
         private void Login()
         {
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
@@ -52,12 +77,12 @@ namespace Wypozyczalnia
 
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if (insertedEmail != user.Email)
+                    if (user.Email != EncryptDecrypt.EncryptPlainTextToCipherText(insertedEmail))
                     {
                         continue;
                     }
 
-                    if (insertedPassword == user.Haslo)
+                    if (user.Haslo == EncryptDecrypt.EncryptPlainTextToCipherText(insertedPassword))
                     {
                         HomeView homepage = new HomeView();
                         homepage.Show();

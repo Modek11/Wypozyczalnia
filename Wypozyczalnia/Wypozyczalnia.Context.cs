@@ -12,13 +12,14 @@ namespace Wypozyczalnia
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class WypozyczalniaEntities : DbContext
     {
         public WypozyczalniaEntities()
             : base("name=WypozyczalniaEntities")
         {
         }
+
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

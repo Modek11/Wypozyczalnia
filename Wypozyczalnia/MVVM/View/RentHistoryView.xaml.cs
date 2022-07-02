@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wypozyczalnia.Core;
 
 namespace Wypozyczalnia.MVVM.View
 {
@@ -44,25 +45,27 @@ namespace Wypozyczalnia.MVVM.View
         public void ReloadContent(int userId)
         {
             List<Samochody> userRentedCars = new List<Samochody>();
-            List<Wypozyczone> userRentedList = new List<Wypozyczone>();          
+            List<Wypozyczone> userRentedList = new List<Wypozyczone>();
             
             using (WypozyczalniaEntities db = new WypozyczalniaEntities())
             {
                 userRentedCars = (from car in db.Samochody select car).ToList();
                 userRentedList = (from list in db.Wypozyczone select list).ToList();
+
                 
                 var Query = (
                     from RentedList in userRentedList
                     join RentedCars in userRentedCars
-                    on RentedList.ID_Uzytkownik equals RentedCars.ID
+                    on RentedList.ID_Samochod equals RentedCars.ID
                     where RentedList.ID_Uzytkownik == userId
+                    orderby RentedList.DataOdbioru, RentedList.DataZwrotu
                     select new
                     {
                         Marka = RentedCars.Marka,
                         Model = RentedCars.Model,
                         DataOdbioru = RentedList.DataOdbioru.ToString("dd-MM-yyyy"),
                         DataZwrotu = RentedList.DataZwrotu.ToString("dd-MM-yyyy")
-                    });
+                    }).Distinct();
 
 
                 carRentalHistory.ItemsSource = Query;
@@ -79,7 +82,7 @@ namespace Wypozyczalnia.MVVM.View
             {
                 foreach (var user in db.Uzytkownicy)
                 {
-                    if(insertedEmail == user.Email)
+                    if(user.Email == EncryptDecrypt.EncryptPlainTextToCipherText(insertedEmail))
                     {
                         ReloadContent(user.ID);
                         adminHistoryText.Text = $"{user.Imie} {user.Nazwisko}";

@@ -7,7 +7,52 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#181735">
-    <Grid>
-        <TextBlock Text="hsfdafsafsaf" FontSize="55"/>
+    <Grid x:Name="rentCarMainGrid">
+        <Grid x:Name="rentCarGrid" Visibility="Visible">
+            <TextBlock x:Name="rentInfoText" Text="Sprawdź nasze dostępne pojazdy!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-200,30,0,0" Foreground="White" FontWeight="Heavy" FontSize="28"></TextBlock>
+            <DataGrid x:Name="rentCarDataGrid" Width="750" Height="312" ColumnWidth="*" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,95,0,0">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Biorę!" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="rentChoosenCarButton" Click="rentChoosenCarButton_Click" Width="500" HorizontalAlignment="Center">
+                                    <Image Source="/images/choose.png" Stretch="Fill" Width="30" HorizontalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <ComboBox x:Name="rentTypeCombo" Width="190" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="500,30,0,0" Foreground="White" FontWeight="SemiBold" FontSize="20" SelectionChanged="rentTypeCombo_SelectionChanged">
+                <ComboBoxItem IsSelected="True">Typy pojazdów</ComboBoxItem>
+                <ComboBoxItem>SuperSportowe</ComboBoxItem>
+                <ComboBoxItem>Sportowe</ComboBoxItem>
+                <ComboBoxItem>SuperLuksusowe</ComboBoxItem>
+                <ComboBoxItem>Luksusowe</ComboBoxItem>
+                <ComboBoxItem>Standardowe</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <Grid x:Name="rentChoosenCarGrid" Visibility="Hidden">
+            <Button x:Name="rentChosenCarReturnButton" Content="Wybierz inny pojazd" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="500,40,0,0" Click="rentChosenCarReturnButton_Click"></Button>
+            <TextBlock x:Name="rentChoosenInfoText" Text="Wprowadź datę i wypożycz!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-200,30,0,0" Foreground="White" FontWeight="Heavy" FontSize="35"></TextBlock>
+            <TextBlock x:Name="rentChoosenCarInfo" Text="Pojazd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,80,0,0" Foreground="Gray" FontWeight="Heavy" FontSize="18"></TextBlock>
+            <TextBlock Text="Data wypożyczenia" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-200,150,0,0" Foreground="White" FontWeight="Heavy" FontSize="18"></TextBlock>
+            <TextBlock Text="Data Zwrotu" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,150,0,0" Foreground="White" FontWeight="Heavy" FontSize="18"></TextBlock>
+            <TextBlock x:Name="rentChoosenWrongDateText" Visibility="Hidden" Text="Data Zwrotu" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Foreground="Red" FontWeight="Heavy" FontSize="20"></TextBlock>
+            <DatePicker x:Name="rentChoosenDateFrom" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-200,180,0,0" Foreground="White" FontWeight="Heavy" FontSize="18"></DatePicker>
+            <DatePicker x:Name="rentChoosenDateTo" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,180,0,0" Foreground="White" FontWeight="Heavy" FontSize="18"></DatePicker>
+            <Button x:Name="rentChoosenCarSubmitButton" Content="Wypożycz!" Width="300" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,300,0,0" FontSize="35" FontWeight="Heavy" Click="rentChoosenCarSubmitButton_Click"></Button>
+        </Grid>
+        
+        <Grid x:Name="rentRentedCarGrid" Visibility="Hidden">
+            <TextBlock Text="Auto zostało pomyślnie wyporzyczone! Zapraszamy po kluczyki do naszego salonu!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Foreground="White" FontWeight="Heavy" FontSize="35" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            <TextBlock Text="ul. Ułanów 3, 31-450 Kraków" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="450,150,0,0" Foreground="Gray" FontWeight="Heavy" FontSize="20"></TextBlock>
+            <TextBlock Text="Twój pozjazd to: " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" Foreground="White" FontWeight="Heavy" FontSize="25"></TextBlock>
+            <TextBlock x:Name="rentRentedCarInfoText" Text="holder" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Foreground="White" FontWeight="Heavy" FontSize="25"></TextBlock>
+            <Button x:Name="rentRentedCarReturnButton" Content="Powrót do wyboru pojazdów" Width="250" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,350,0,0" FontSize="16" Click="rentChosenCarReturnButton_Click"></Button>
+        </Grid>
+        
     </Grid>
+    
 </UserControl>

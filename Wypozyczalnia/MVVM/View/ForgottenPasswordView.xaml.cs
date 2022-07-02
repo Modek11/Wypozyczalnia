@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Net.Security;
 using System.Text.RegularExpressions;
+using Wypozyczalnia.Core;
 
 
 namespace Wypozyczalnia.MVVM.View
@@ -26,11 +27,14 @@ namespace Wypozyczalnia.MVVM.View
     {
         private bool isEmailSent = false;
         private string newPasswordCode = string.Empty;
-        private int userID = 0;
+        private int userID;
+        private string mailSenderEmailEncrypted;
+        private string mailSenderPasswordEncrypted;
 
         public ForgottenPasswordView()
         {
             InitializeComponent();
+            GetSenderData();
         }
         private void exitApp(object sender, RoutedEventArgs e)
         {
@@ -41,7 +45,6 @@ namespace Wypozyczalnia.MVVM.View
         {
             if (isEmailSent)
             {
-                //TODO Logika zmiany hasła konta
                 if(forgottenPasswordInsertCode.Text != newPasswordCode)
                 {
                     forgottenPasswordInfoText.Text = "Wprowadzony kod jest błędny!";
@@ -59,7 +62,7 @@ namespace Wypozyczalnia.MVVM.View
                     {
                         if (user.ID == userID)
                         {
-                            user.Haslo = forgottenPasswordInsertNewPassword.Password;
+                            user.Haslo = EncryptDecrypt.EncryptPlainTextToCipherText(forgottenPasswordInsertNewPassword.Password);
                             break;
                         }
                     }
@@ -76,9 +79,10 @@ namespace Wypozyczalnia.MVVM.View
                 
                 using (WypozyczalniaEntities db = new WypozyczalniaEntities())
                 {
+                    
                     foreach (var user in db.Uzytkownicy)
                     {
-                        if (user.Nazwisko == forgottenPasswordInsertSurname.Text && user.PESEL == forgottenPasswordInsertPesel.Text && user.Email == forgottenPasswordInsertEmail.Text)
+                        if (user.Nazwisko == forgottenPasswordInsertSurname.Text && user.PESEL == forgottenPasswordInsertPesel.Text && user.Email == EncryptDecrypt.EncryptPlainTextToCipherText(forgottenPasswordInsertEmail.Text))
                         {
                             userID = user.ID;
                             break;
@@ -116,11 +120,27 @@ namespace Wypozyczalnia.MVVM.View
             this.Close();
         }
 
+        private void GetSenderData()
+        {
+            using (WypozyczalniaEntities db = new WypozyczalniaEntities())
+            {
+                foreach (var user in db.Uzytkownicy)
+                {
+                    if (user.ID == 0)
+                    {
+                        mailSenderEmailEncrypted = user.Email;
+                        mailSenderPasswordEncrypted = user.Haslo;
+                        return;
+                    }
+                }
+            }
+        }
+
         public void SendEmail(string insertedEmail)
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("grupawariatuw@interia.pl", "Wypożyczalnia Samochodowa");
+                mail.From = new MailAddress(EncryptDecrypt.DecryptCipherTextToPlainText(mailSenderEmailEncrypted), "Wypożyczalnia Samochodowa");
                 mail.To.Add(insertedEmail);
                 mail.Subject = "Kod do zresetowania hasła do konta";
                 mail.Body = GenerateResetPasswordCode(10);
@@ -128,7 +148,7 @@ namespace Wypozyczalnia.MVVM.View
 
                 using (SmtpClient smtp = new SmtpClient("poczta.interia.pl", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("grupawariatuw@interia.pl", "tomczyk1");
+                    smtp.Credentials = new NetworkCredential(EncryptDecrypt.DecryptCipherTextToPlainText(mailSenderEmailEncrypted), EncryptDecrypt.DecryptCipherTextToPlainText(mailSenderPasswordEncrypted));
                     smtp.EnableSsl = true;
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtp.Send(mail);

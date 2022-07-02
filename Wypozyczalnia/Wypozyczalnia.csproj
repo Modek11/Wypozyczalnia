@@ -141,6 +141,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\EncryptDecrypt.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="KlasyPojazdow.cs">
@@ -299,6 +300,7 @@
   <ItemGroup>
     <Resource Include="images\HomeBottom.png" />
     <Resource Include="images\logo.png" />
+    <Resource Include="images\choose.png" />
     <Content Include="Wypozyczalnia.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Wypozyczalnia.edmx</DependentUpon>
